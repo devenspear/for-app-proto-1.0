@@ -19,66 +19,75 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   className = '',
   disabled,
+  style,
   ...props
 }) => {
-  const baseStyles = `
-    inline-flex items-center justify-center font-semibold
-    rounded-xl transition-all duration-200 ease-out
-    focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-    disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
-    active:scale-[0.98]
-  `;
-
-  const variantStyles = {
-    primary: `
-      bg-gradient-to-b from-primary-500 to-primary-600
-      text-white shadow-soft
-      hover:from-primary-600 hover:to-primary-700 hover:shadow-medium
-      focus-visible:ring-primary-500
-    `,
-    secondary: `
-      bg-neutral-100 text-neutral-700
-      hover:bg-neutral-200
-      focus-visible:ring-neutral-500
-    `,
-    outline: `
-      border-2 border-neutral-200 text-neutral-700 bg-white
-      hover:border-neutral-300 hover:bg-neutral-50
-      focus-visible:ring-neutral-500
-    `,
-    ghost: `
-      text-neutral-600 bg-transparent
-      hover:bg-neutral-100 hover:text-neutral-900
-      focus-visible:ring-neutral-500
-    `,
-    danger: `
-      bg-gradient-to-b from-danger-500 to-danger-600
-      text-white shadow-soft
-      hover:from-danger-600 hover:to-danger-600 hover:shadow-medium
-      focus-visible:ring-danger-500
-    `,
+  const baseStyles: React.CSSProperties = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight: 600,
+    borderRadius: '0.75rem',
+    transition: 'all 0.2s ease-out',
+    cursor: disabled || isLoading ? 'not-allowed' : 'pointer',
+    opacity: disabled || isLoading ? 0.5 : 1,
+    border: 'none',
   };
 
-  const sizeStyles = {
-    sm: 'px-3.5 py-2 text-sm gap-1.5',
-    md: 'px-5 py-2.5 text-sm gap-2',
-    lg: 'px-6 py-3 text-base gap-2',
+  const variantStyles: Record<string, React.CSSProperties> = {
+    primary: {
+      background: 'linear-gradient(to bottom, #4f46e5, #4338ca)',
+      color: '#ffffff',
+      boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
+    },
+    secondary: {
+      background: '#e4e4e7',
+      color: '#3f3f46',
+    },
+    outline: {
+      background: '#ffffff',
+      color: '#3f3f46',
+      border: '2px solid #d4d4d8',
+    },
+    ghost: {
+      background: 'transparent',
+      color: '#52525b',
+    },
+    danger: {
+      background: 'linear-gradient(to bottom, #ef4444, #dc2626)',
+      color: '#ffffff',
+      boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
+    },
+  };
+
+  const sizeStyles: Record<string, React.CSSProperties> = {
+    sm: { padding: '0.5rem 0.875rem', fontSize: '0.875rem', gap: '0.375rem' },
+    md: { padding: '0.625rem 1.25rem', fontSize: '0.875rem', gap: '0.5rem' },
+    lg: { padding: '0.75rem 1.5rem', fontSize: '1rem', gap: '0.5rem' },
+  };
+
+  const combinedStyles: React.CSSProperties = {
+    ...baseStyles,
+    ...variantStyles[variant],
+    ...sizeStyles[size],
+    ...style,
   };
 
   return (
     <button
-      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={className}
       disabled={disabled || isLoading}
+      style={combinedStyles}
       {...props}
     >
       {isLoading ? (
         <Loader2 className="w-4 h-4 animate-spin" />
       ) : leftIcon ? (
-        <span className="flex-shrink-0">{leftIcon}</span>
+        <span style={{ flexShrink: 0 }}>{leftIcon}</span>
       ) : null}
       <span>{children}</span>
       {rightIcon && !isLoading && (
-        <span className="flex-shrink-0">{rightIcon}</span>
+        <span style={{ flexShrink: 0 }}>{rightIcon}</span>
       )}
     </button>
   );

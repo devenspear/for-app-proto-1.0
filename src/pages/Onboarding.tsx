@@ -26,12 +26,18 @@ export const Onboarding: React.FC = () => {
   const steps = [
     // Welcome
     <div key="welcome" className="text-center space-y-8">
-      <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary-500 to-primary-600 rounded-3xl flex items-center justify-center shadow-large">
-        <Sparkles size={44} className="text-white" />
+      <div
+        className="w-24 h-24 mx-auto rounded-3xl flex items-center justify-center"
+        style={{
+          background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+          boxShadow: '0 10px 40px -10px rgba(79, 70, 229, 0.5)'
+        }}
+      >
+        <Sparkles size={44} color="#ffffff" />
       </div>
       <div>
-        <h1 className="text-3xl font-bold text-neutral-900">Character Insights</h1>
-        <p className="text-neutral-500 mt-3 text-lg leading-relaxed max-w-sm mx-auto">
+        <h1 className="text-3xl font-bold" style={{ color: '#18181b' }}>Character Insights</h1>
+        <p className="mt-3 text-lg leading-relaxed max-w-sm mx-auto" style={{ color: '#52525b' }}>
           A tool for self-reflection based on 12 character themes to support personal growth.
         </p>
       </div>
@@ -48,45 +54,64 @@ export const Onboarding: React.FC = () => {
     // Privacy
     <div key="privacy" className="space-y-6">
       <div className="text-center">
-        <div className="w-20 h-20 mx-auto bg-emerald-100 rounded-2xl flex items-center justify-center mb-5">
-          <Shield size={36} className="text-emerald-600" />
+        <div
+          className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-5"
+          style={{ backgroundColor: '#d1fae5' }}
+        >
+          <Shield size={36} color="#059669" />
         </div>
-        <h2 className="text-2xl font-bold text-neutral-900">Your Privacy Matters</h2>
-        <p className="text-neutral-500 mt-2">Here's how we protect your data</p>
+        <h2 className="text-2xl font-bold" style={{ color: '#18181b' }}>Your Privacy Matters</h2>
+        <p className="mt-2" style={{ color: '#71717a' }}>Here's how we protect your data</p>
       </div>
 
-      <div className="bg-white rounded-2xl border border-neutral-100 shadow-soft p-5 space-y-5">
+      <div
+        className="rounded-2xl p-5 space-y-5"
+        style={{
+          backgroundColor: '#ffffff',
+          border: '1px solid #e4e4e7',
+          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+        }}
+      >
         <div className="flex gap-4">
-          <div className="w-10 h-10 rounded-xl bg-primary-100 flex items-center justify-center flex-shrink-0">
-            <Database size={20} className="text-primary-600" />
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{ backgroundColor: '#e0e7ff' }}
+          >
+            <Database size={20} color="#4f46e5" />
           </div>
           <div>
-            <p className="font-semibold text-neutral-900">100% Local Storage</p>
-            <p className="text-sm text-neutral-500 mt-0.5">
+            <p className="font-semibold" style={{ color: '#18181b' }}>100% Local Storage</p>
+            <p className="text-sm mt-0.5" style={{ color: '#71717a' }}>
               All data stays on your device. Nothing is sent to any server.
             </p>
           </div>
         </div>
 
         <div className="flex gap-4">
-          <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
-            <Lock size={20} className="text-emerald-600" />
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{ backgroundColor: '#d1fae5' }}
+          >
+            <Lock size={20} color="#059669" />
           </div>
           <div>
-            <p className="font-semibold text-neutral-900">No Tracking</p>
-            <p className="text-sm text-neutral-500 mt-0.5">
+            <p className="font-semibold" style={{ color: '#18181b' }}>No Tracking</p>
+            <p className="text-sm mt-0.5" style={{ color: '#71717a' }}>
               No analytics, no ads, no data collection of any kind.
             </p>
           </div>
         </div>
 
         <div className="flex gap-4">
-          <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center flex-shrink-0">
-            <Eye size={20} className="text-amber-600" />
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{ backgroundColor: '#fef3c7' }}
+          >
+            <Eye size={20} color="#d97706" />
           </div>
           <div>
-            <p className="font-semibold text-neutral-900">Self-Report Based</p>
-            <p className="text-sm text-neutral-500 mt-0.5">
+            <p className="font-semibold" style={{ color: '#18181b' }}>Self-Report Based</p>
+            <p className="text-sm mt-0.5" style={{ color: '#71717a' }}>
               You manually enter your data. No automatic monitoring.
             </p>
           </div>
@@ -101,36 +126,47 @@ export const Onboarding: React.FC = () => {
     // Consent
     <div key="consent" className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-neutral-900">Before We Begin</h2>
-        <p className="text-neutral-500 mt-2">Please review and understand the following</p>
+        <h2 className="text-2xl font-bold" style={{ color: '#18181b' }}>Before We Begin</h2>
+        <p className="mt-2" style={{ color: '#71717a' }}>Please review and understand the following</p>
       </div>
 
-      <div className="bg-white rounded-2xl border border-neutral-100 shadow-soft p-5 space-y-4">
-        <div className="p-4 bg-amber-50 rounded-xl border border-amber-200">
-          <p className="text-sm text-neutral-700 leading-relaxed">
-            <strong className="text-amber-700">Not a diagnostic tool:</strong> This app provides reflection prompts, not clinical assessments or medical advice.
+      <div
+        className="rounded-2xl p-5 space-y-4"
+        style={{
+          backgroundColor: '#ffffff',
+          border: '1px solid #e4e4e7',
+          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+        }}
+      >
+        <div className="p-4 rounded-xl" style={{ backgroundColor: '#fffbeb', border: '1px solid #fde68a' }}>
+          <p className="text-sm leading-relaxed" style={{ color: '#3f3f46' }}>
+            <strong style={{ color: '#b45309' }}>Not a diagnostic tool:</strong> This app provides reflection prompts, not clinical assessments or medical advice.
           </p>
         </div>
-        <div className="p-4 bg-neutral-50 rounded-xl border border-neutral-200">
-          <p className="text-sm text-neutral-700 leading-relaxed">
-            <strong>Not affiliated with AA:</strong> While inspired by character themes common in recovery programs, this app is independent.
+        <div className="p-4 rounded-xl" style={{ backgroundColor: '#f4f4f5', border: '1px solid #d4d4d8' }}>
+          <p className="text-sm leading-relaxed" style={{ color: '#3f3f46' }}>
+            <strong style={{ color: '#18181b' }}>Not affiliated with AA:</strong> While inspired by character themes common in recovery programs, this app is independent.
           </p>
         </div>
-        <div className="p-4 bg-primary-50 rounded-xl border border-primary-200">
-          <p className="text-sm text-neutral-700 leading-relaxed">
-            <strong className="text-primary-700">For self-reflection only:</strong> Scores are proxies based on self-reported data, meant to prompt reflection.
+        <div className="p-4 rounded-xl" style={{ backgroundColor: '#eef2ff', border: '1px solid #c7d2fe' }}>
+          <p className="text-sm leading-relaxed" style={{ color: '#3f3f46' }}>
+            <strong style={{ color: '#4338ca' }}>For self-reflection only:</strong> Scores are proxies based on self-reported data, meant to prompt reflection.
           </p>
         </div>
       </div>
 
-      <label className="flex items-start gap-3 cursor-pointer p-4 bg-white rounded-xl border border-neutral-200 hover:border-neutral-300 transition-colors">
+      <label
+        className="flex items-start gap-3 cursor-pointer p-4 rounded-xl transition-colors"
+        style={{ backgroundColor: '#ffffff', border: '1px solid #d4d4d8' }}
+      >
         <input
           type="checkbox"
           checked={consent}
           onChange={(e) => setConsent(e.target.checked)}
           className="mt-0.5"
+          style={{ accentColor: '#4f46e5' }}
         />
-        <span className="text-sm text-neutral-700 leading-relaxed">
+        <span className="text-sm leading-relaxed" style={{ color: '#3f3f46' }}>
           I understand that this is a self-reflection tool and not a substitute for professional help.
         </span>
       </label>
@@ -149,11 +185,14 @@ export const Onboarding: React.FC = () => {
     // Demo data option
     <div key="demo" className="space-y-6">
       <div className="text-center">
-        <div className="w-20 h-20 mx-auto bg-emerald-100 rounded-2xl flex items-center justify-center mb-5">
-          <CheckCircle size={36} className="text-emerald-600" />
+        <div
+          className="w-20 h-20 mx-auto rounded-2xl flex items-center justify-center mb-5"
+          style={{ backgroundColor: '#d1fae5' }}
+        >
+          <CheckCircle size={36} color="#059669" />
         </div>
-        <h2 className="text-2xl font-bold text-neutral-900">You're All Set!</h2>
-        <p className="text-neutral-500 mt-2">
+        <h2 className="text-2xl font-bold" style={{ color: '#18181b' }}>You're All Set!</h2>
+        <p className="mt-2" style={{ color: '#71717a' }}>
           Would you like to start with demo data?
         </p>
       </div>
@@ -179,7 +218,7 @@ export const Onboarding: React.FC = () => {
         </Button>
       </div>
 
-      <p className="text-xs text-neutral-400 text-center leading-relaxed">
+      <p className="text-xs text-center leading-relaxed" style={{ color: '#71717a' }}>
         Demo data includes 2 weeks of sample entries to help you explore all features.
         You can clear it anytime in Settings.
       </p>
@@ -187,17 +226,21 @@ export const Onboarding: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-neutral-50 to-neutral-100 flex items-center justify-center p-6">
+    <div
+      className="min-h-screen flex items-center justify-center p-6"
+      style={{ background: 'linear-gradient(to bottom, #fafafa, #f4f4f5)' }}
+    >
       <div className="max-w-md w-full">
         {/* Progress dots */}
         <div className="flex justify-center gap-2 mb-10">
           {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
-              className={`
-                h-1.5 rounded-full transition-all duration-300
-                ${i === step ? 'w-8 bg-primary-500' : i < step ? 'w-1.5 bg-primary-300' : 'w-1.5 bg-neutral-200'}
-              `}
+              className="h-1.5 rounded-full transition-all duration-300"
+              style={{
+                width: i === step ? '2rem' : '0.375rem',
+                backgroundColor: i === step ? '#4f46e5' : i < step ? '#a5b4fc' : '#d4d4d8'
+              }}
             />
           ))}
         </div>
