@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Save, RotateCcw, Clock, Smartphone, Heart, Activity, Moon, Footprints, Calendar } from 'lucide-react';
+import { Save, RotateCcw, Clock, Smartphone, Heart, Activity, Calendar, CheckCircle } from 'lucide-react';
 import { Layout } from '../components/common/Layout';
 import { Button } from '../components/common/Button';
 import { useDataStore } from '../store/useDataStore';
@@ -34,10 +34,10 @@ const SliderInput: React.FC<SliderInputProps> = ({
   return (
     <div className="space-y-3">
       <div className="flex justify-between items-center">
-        <label className="text-sm font-medium text-neutral-700">{label}</label>
+        <label className="text-sm font-medium" style={{ color: '#3f3f46' }}>{label}</label>
         <span
           className="text-sm font-bold px-3 py-1 rounded-lg"
-          style={{ backgroundColor: `${color}15`, color }}
+          style={{ backgroundColor: `${color}20`, color }}
         >
           {value} {unit}
         </span>
@@ -50,14 +50,14 @@ const SliderInput: React.FC<SliderInputProps> = ({
           step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full h-2 bg-neutral-200 rounded-full appearance-none cursor-pointer slider-input"
+          className="w-full h-2 rounded-full appearance-none cursor-pointer"
           style={{
-            background: `linear-gradient(to right, ${color} 0%, ${color} ${percentage}%, #e5e7eb ${percentage}%, #e5e7eb 100%)`,
+            background: `linear-gradient(to right, ${color} 0%, ${color} ${percentage}%, #e4e4e7 ${percentage}%, #e4e4e7 100%)`,
           }}
         />
       </div>
       {description && (
-        <p className="text-xs text-neutral-500">{description}</p>
+        <p className="text-xs" style={{ color: '#71717a' }}>{description}</p>
       )}
     </div>
   );
@@ -103,29 +103,48 @@ export const DataEntry: React.FC = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const hasExistingData = todaysUsage !== null;
+
   return (
     <Layout>
       <div className="space-y-6">
         {/* Header */}
         <div className="flex items-start justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-neutral-900">Daily Data Entry</h1>
-            <p className="text-neutral-500 flex items-center gap-2 mt-1">
+            <h1 className="text-2xl font-bold" style={{ color: '#18181b' }}>Daily Data Entry</h1>
+            <p className="flex items-center gap-2 mt-1" style={{ color: '#71717a' }}>
               <Calendar size={16} />
               {formatDate(getToday())}
             </p>
           </div>
         </div>
 
+        {/* Existing data indicator */}
+        {hasExistingData && (
+          <div
+            className="flex items-center gap-3 px-4 py-3 rounded-xl"
+            style={{ backgroundColor: '#dbeafe', border: '1px solid #93c5fd', color: '#1d4ed8' }}
+          >
+            <CheckCircle size={20} />
+            <span className="text-sm font-medium">You have existing data for today. Changes will update your entry.</span>
+          </div>
+        )}
+
         {/* App Usage Section */}
-        <div className="bg-white rounded-2xl border border-neutral-100 shadow-soft overflow-hidden">
-          <div className="px-5 py-4 border-b border-neutral-100 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary-100 flex items-center justify-center">
-              <Smartphone size={20} className="text-primary-600" />
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{ backgroundColor: '#ffffff', border: '1px solid #e4e4e7', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
+        >
+          <div className="px-5 py-4 flex items-center gap-3" style={{ borderBottom: '1px solid #e4e4e7' }}>
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ backgroundColor: '#e0e7ff' }}
+            >
+              <Smartphone size={20} color="#4f46e5" />
             </div>
             <div>
-              <h2 className="font-semibold text-neutral-900">App Usage</h2>
-              <p className="text-sm text-neutral-500">Time spent in each category (minutes)</p>
+              <h2 className="font-semibold" style={{ color: '#18181b' }}>App Usage</h2>
+              <p className="text-sm" style={{ color: '#71717a' }}>Time spent in each category (minutes)</p>
             </div>
           </div>
           <div className="p-5 space-y-6">
@@ -210,14 +229,20 @@ export const DataEntry: React.FC = () => {
         </div>
 
         {/* Behavior Metrics Section */}
-        <div className="bg-white rounded-2xl border border-neutral-100 shadow-soft overflow-hidden">
-          <div className="px-5 py-4 border-b border-neutral-100 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
-              <Activity size={20} className="text-amber-600" />
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{ backgroundColor: '#ffffff', border: '1px solid #e4e4e7', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
+        >
+          <div className="px-5 py-4 flex items-center gap-3" style={{ borderBottom: '1px solid #e4e4e7' }}>
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ backgroundColor: '#fef3c7' }}
+            >
+              <Activity size={20} color="#d97706" />
             </div>
             <div>
-              <h2 className="font-semibold text-neutral-900">Behavior</h2>
-              <p className="text-sm text-neutral-500">Phone usage patterns</p>
+              <h2 className="font-semibold" style={{ color: '#18181b' }}>Behavior</h2>
+              <p className="text-sm" style={{ color: '#71717a' }}>Phone usage patterns</p>
             </div>
           </div>
           <div className="p-5 space-y-6">
@@ -247,14 +272,20 @@ export const DataEntry: React.FC = () => {
         </div>
 
         {/* Health Metrics Section */}
-        <div className="bg-white rounded-2xl border border-neutral-100 shadow-soft overflow-hidden">
-          <div className="px-5 py-4 border-b border-neutral-100 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
-              <Heart size={20} className="text-emerald-600" />
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{ backgroundColor: '#ffffff', border: '1px solid #e4e4e7', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}
+        >
+          <div className="px-5 py-4 flex items-center gap-3" style={{ borderBottom: '1px solid #e4e4e7' }}>
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ backgroundColor: '#d1fae5' }}
+            >
+              <Heart size={20} color="#059669" />
             </div>
             <div>
-              <h2 className="font-semibold text-neutral-900">Health</h2>
-              <p className="text-sm text-neutral-500">Physical activity and sleep</p>
+              <h2 className="font-semibold" style={{ color: '#18181b' }}>Health</h2>
+              <p className="text-sm" style={{ color: '#71717a' }}>Physical activity and sleep</p>
             </div>
           </div>
           <div className="p-5 space-y-6">
@@ -280,8 +311,8 @@ export const DataEntry: React.FC = () => {
             />
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-neutral-700 flex items-center gap-2">
-                  <Clock size={16} className="text-neutral-400" />
+                <label className="text-sm font-medium flex items-center gap-2" style={{ color: '#3f3f46' }}>
+                  <Clock size={16} style={{ color: '#71717a' }} />
                   Wake Time
                 </label>
               </div>
@@ -289,12 +320,16 @@ export const DataEntry: React.FC = () => {
                 type="time"
                 value={formData.wakeTime}
                 onChange={(e) => updateField('wakeTime', e.target.value)}
-                className="
-                  w-full px-4 py-3 bg-neutral-50 border border-neutral-200 rounded-xl
-                  text-neutral-900
-                  focus:bg-white focus:border-primary-300 focus:ring-2 focus:ring-primary-100
-                  transition-all duration-150
-                "
+                style={{
+                  width: '100%',
+                  padding: '0.75rem 1rem',
+                  backgroundColor: '#f9fafb',
+                  border: '1px solid #d4d4d8',
+                  borderRadius: '0.75rem',
+                  color: '#18181b',
+                  fontSize: '1rem',
+                  outline: 'none'
+                }}
               />
             </div>
           </div>
@@ -314,11 +349,21 @@ export const DataEntry: React.FC = () => {
             onClick={handleSave}
             isLoading={isLoading}
             className="flex-1"
-            leftIcon={!saved ? <Save size={18} /> : undefined}
+            leftIcon={!saved ? <Save size={18} /> : <CheckCircle size={18} />}
           >
-            {saved ? 'Saved!' : 'Save Entry'}
+            {saved ? 'Saved!' : hasExistingData ? 'Update Entry' : 'Save Entry'}
           </Button>
         </div>
+
+        {/* Save confirmation */}
+        {saved && (
+          <div
+            className="text-center py-2 rounded-lg text-sm font-medium"
+            style={{ backgroundColor: '#d1fae5', color: '#047857' }}
+          >
+            Your data has been saved to local storage
+          </div>
+        )}
       </div>
     </Layout>
   );
